@@ -1,0 +1,10 @@
+language: java
+script:
+  - javac -encoding UTF8 -cp ./classes:jar/* -d ./classes src/ele/handler/RedisLock.java
+  - javac -encoding UTF8 -cp ./classes:jar/* -d ./classes src/ele/util/*.java
+  - javac -encoding UTF8 -cp ./classes:jar/* -d ./classes src/ele/handler/*.java
+#  - java -cp ./classes:jar/* ele.test.JedisTest
+  - javac -encoding UTF8 -cp ./classes:jar/* -d ./classes src/Server.java 
+  - nohup java -server -Xms2g -Xmx2g -Xmn768m -classpath ./classes:jar/* Server 8081 &
+  - nohup java -server -Xms2g -Xmx2g -Xmn768m -classpath ./classes:jar/* Server 8082 &
+  - nohup java -server -Xms2g -Xmx2g -Xmn768m -classpath ./classes:jar/* Server 8083 &
